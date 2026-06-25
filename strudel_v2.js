@@ -218,3 +218,268 @@ arrange(
       .gain(0.44)
   )]
 )
+
+samples({
+  shama: 'https://raw.githubusercontent.com/nickdelzotto-netizen/music/main/shama_norm.wav',
+  leothrix: 'https://raw.githubusercontent.com/nickdelzotto-netizen/music/main/leothrix_norm.wav'
+});
+
+arrange(
+  // =========================================================================
+  // PART 1: THE LONELY EARTH & ISOLATED CALLS (Bars 1-16)
+  // Letting the listener settle into the dark New Forest dawn. Pure atmosphere.
+  // =========================================================================
+  [16, stack(
+    // The Locked Earth Bass Layers (Deep, heavy, and grounding)
+    note("c1").s("sine").lpf(80).gain(0.4),
+    note("<[c2,eb2] [c2,g2]>").s("sine").lpf(180).room(0.6).gain(0.35),
+
+    // The Woodblock & Pulse - Very sparse and hesitant here
+    note("c1 ~ ~ ~ ~ ~ ~ ~").s("sine").fast(1.4).lpf(90).gain(0.3),
+    s("~ ~ ~ ~ gm_woodblock ~ ~ ~").fast(1.4).lpf(450).gain(0.1),
+
+    // Shama texture: Distant, ghostly, heavily washed in early morning mist
+    s("shama ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~")
+      .begin(0.1).end(0.3)
+      .room(0.99)      // Massive, cold open space
+      .delay(0.6)     // Echoing out into the valleys
+      .lpf(1500)      // Softened high frequencies
+      .pan(0.2)       // Fixed far left in the trees
+      .gain(0.4)
+  )],
+
+  // =========================================================================
+  // PART 2: THE TEXTURAL RUSTLE & DIALOGUE BUILD (Bars 17-32)
+  // The wind picks up. Varied cymbals and bamboo enter. The birds get active.
+  // =========================================================================
+  [16, stack(
+    // Base foundation stays locked
+    note("<c1 c1 ab0 bb0>").s("sine").lpf(80).gain(0.42),
+    note("<[c2,eb2] [c2,g2] [ab1,eb2] [bb1,f2]>").s("sine").lpf(180).room(0.5).gain(0.38),
+    note("<c1 ~ ~ ~ ~ ~ ~ c1 ~ c1 ~ ~ ~ ~ ~ ~>").s("sine").fast(1.4).lpf(90).gain(0.35),
+
+    // Bamboo and wind friction swelling
+    s("~ ~ gm_marimba ~ ~ ~ gm_marimba ~ ~ gm_marimba ~ ~ ~ ~ ~ ~").fast(0.8).lpf(900).room(0.9).gain(0.15),
+
+    // Fractured, varying cymbal textures start skittering overhead
+    s("<[hh ~ hh ~] [gm_cabasa*4] [hh ~ rim ~]>").fast(1.5).hpf(6000).room(0.7).gain(0.12),
+
+    // Bird Texture Shifting: The calls get more frequent and begin to migrate.
+    // They alternate politely, but their filters open up slightly to sound closer.
+    s("<shama ~ ~ leothrix ~ ~ shama ~ ~ ~ leothrix ~ ~ ~ ~ ~>")
+      .begin(0.08).end(0.38)
+      .room(0.93)     // Reverb tightens slightly
+      .lpf(2500)      // Becoming crisper
+      .pan(sine.slow(4).range(0.3, 0.7)) // Actively drifting across the forest
+      .gain(0.44)
+  )],
+
+  // =========================================================================
+  // PART 3: THE CEREBRAL LIQUID ROLLER DROP (Bars 33-56)
+  // The track locks into a steady, recognizable DnB rhythm, but strictly soft.
+  // =========================================================================
+  [24, stack(
+    // Sub-bass line begins rolling continuously to match the new speed
+    note("<c1*2 c1*2 ab0*2 bb0*2>").s("sine").lpf(85).gain(0.45),
+    note("<[c2,eb2] [c2,g2] [ab1,eb2] [bb1,f2]>").s("sine").lpf(190).room(0.4).gain(0.38),
+
+    // THE STEADY SOFT DnB GROOVE
+    // The pulse becomes a continuous fluid throb (174 RPM speed context)
+    note("c1 ~ ~ ~ ~ ~ c1 ~ ~ c1 ~ ~ ~ ~ c1 ~").s("sine").fast(1.74).lpf(90).gain(0.38),
+    
+    // The Woodblock breaks into a complex, intricate, beautiful drum and bass ghost pattern
+    s("~ ~ gm_woodblock ~ ~ gm_woodblock ~ ~ ~ gm_woodblock ~ ~ gm_woodblock ~ ~ ~")
+      .fast(1.74)
+      .lpf(450)
+      .room(0.5)
+      .gain(0.16),
+
+    // The Varied Cymbals lock into a lightning-fast but whisper-quiet liquid roll
+    s("<[hh ~ hh ~] [gm_cabasa*4] [hh ~ rim ~] [~ gm_cabasa ~ hh]>")
+      .fast(1.74)
+      .hpf(6500)      // Pure, high-altitude air
+      .room(0.6)
+      .gain(0.14),
+
+    // THE SEAMLESS CHORUS DIALOGUE
+    // The birds are now hyper-vibrant, crisp, and conversational.
+    // They move quickly through the panning space, completely driving the melody of the track.
+    s("<shama ~ ~ leothrix ~ ~ shama ~ ~ leothrix ~ shama ~ leothrix ~>")
+      .begin(0.05).end(0.4)
+      .room(0.88)     // Intimate, close canopy space
+      .hpf(1200)      // High-passed to make them cut clean through the deep bass
+      .pan(sine.slow(2).range(0.1, 0.9)) // Moving swiftly across the listener's head
+      .gain(0.48)
+  )],
+
+  // =========================================================================
+  // PART 4: RETURNING TO THE SOIL (Outro Breakdown - Bars 57-72)
+  // The rhythm drops away, returning to the lonely earth and a final Shama solo.
+  // =========================================================================
+  [16, stack(
+    // Rhythm dissolves entirely back into a single low hum
+    note("c1").s("sine").lpf(75).gain(sine.slow(8).range(0.35, 0.05)),
+    
+    // The Leothrix goes silent. The Shama has the final word.
+    // It filters down slowly into a warm mid-range shadow as the fog covers it up.
+    s("~ ~ ~ ~ shama ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~")
+      .begin(0.1).end(0.35)
+      .room(0.98)
+      .lpf(sine.slow(4).range(2000, 600)) // Gradually muffled out into the dark
+      .pan(0.5)
+      .gain(sine.slow(8).range(0.4, 0.1))
+  )]
+)
+D N B BIRDS
+samples({
+  shama: 'https://raw.githubusercontent.com/nickdelzotto-netizen/music/main/shama_norm.wav',
+  leothrix: 'https://raw.githubusercontent.com/nickdelzotto-netizen/music/main/leothrix_norm.wav'
+});
+
+arrange(
+  // =========================================================================
+  // PART 1: THE LONELY EARTH & ISOLATED CALLS (Bars 1-16)
+  // Settling into the dark dawn. Minimalist, cold air, sparse bird calls.
+  // =========================================================================
+  [16, stack(
+    note("c1").s("sine").lpf(80).gain(0.35),
+    note("<[c2,eb2] [c2,g2]>").s("sine").lpf(170).room(0.6).gain(0.28),
+    note("c1 ~ ~ ~ ~ ~ ~ ~").s("sine").fast(1.4).lpf(90).gain(0.25),
+    s("~ ~ ~ ~ rim ~ ~ ~").fast(1.4).lpf(250).gain(0.08),
+
+    s("shama ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~")
+      .begin(0.1).end(0.3)
+      .room(0.99)      
+      .delay(0.6)     
+      .lpf(1400)      
+      .pan(0.2)       
+      .gain(0.35)
+  )],
+
+  // =========================================================================
+  // PART 2: THE COLD RUSTLE & THE LOW MASK EFFECT (Bars 17-36)
+  // The drone swells. In the final bars (33-36), the "mask" clamps down—
+  // filtering out all the high frequencies to create a breathless tension before the drop.
+  // =========================================================================
+  [20, stack(
+    // The main foundations react to the mask at the very end of the cycle
+    note("<c1 c1 ab0 bb0>").s("sine")
+      .lpf(sine.slow(10).range(80, 50)) // Dips lower at the drop edge
+      .gain(0.38),
+    
+    note("<[c2,eb2] [c2,g2] [ab1,eb2] [bb1,f2]>").s("sine")
+      .lpf(sine.slow(10).range(170, 90))
+      .room(0.6).gain(0.32),
+
+    s("~ ~ gm_marimba ~ ~ ~ gm_marimba ~ ~ gm_marimba ~ ~ ~ ~ ~ ~").fast(0.8).lpf(500).room(0.9).gain(0.12),
+    
+    // THE FILTER MASK SHIFT: Cymbals are choked out entirely by the end of this part
+    s("hh ~ gm_cabasa ~ hh ~ gm_cabasa ~ hh ~ ~ gm_cabasa ~ ~ hh ~")
+      .fast(1.5)
+      .hpf(6500)
+      .lpf(sine.slow(10).range(20000, 200)) // The mask closes tight right here
+      .room(0.6)
+      .gain(0.08),
+
+    // The grounding drone hums through the filter mask
+    note("c2*4").s("sine").lpf(200).room(0.85).gain(0.15),
+
+    s("<shama ~ ~ leothrix ~ ~ shama ~ ~ ~ leothrix ~ ~ ~ ~ ~>")
+      .begin(0.08).end(0.38)
+      .room(0.93)     
+      .lpf(sine.slow(10).range(2200, 300)) // Birds sound distant and muffled just before the run
+      .pan(0.3) 
+      .gain(0.35)
+  )],
+
+  // =========================================================================
+  // PART 3: THE HIGH DAWN RUN (The Exotic Ascent - Bars 37-68)
+  // The mask snaps open. The continuous vibrating earth breaks wide open.
+  // A haunting, classical Indian raga-inspired melody glides overhead.
+  // =========================================================================
+  [32, stack(
+    // THE LONGER VIBRATING EARTH - Continuous, heavy subterranean foundation
+    note("<c1*2 c1*2 ab0*2 bb0*2>").s("sine").lpf(75).gain(0.42),
+
+    // INTENSE WARM PAD RISE - Velvet, rich pad layers holding the space
+    note("<[c2,db2,g2,c3] ~ [ab1,c2,eb2,ab2] ~ [bb1,d2,f2,bb2] ~>")
+      .s("sine")
+      .lpf(380)        
+      .room(0.8)
+      .gain(sine.slow(6).range(0.25, 0.45)),
+
+    // NEW: THE EASTERN BANSURI LINE (Raga-inspired exotic melody)
+    // Utilizing the haunting flat 2nd (db) and flat 6th (ab) over a C root base.
+    // It loops with microtonal phrasing, weaving through the trees like ancient incense.
+    note("<[c3 ~ db3 ~ eb3 ~ f3 ~] [g3 ~ ab3 ~ f3 ~ db3 ~] [c3 ~ ~ ~ db3 ~ c3 ~]>")
+      .s("sine")
+      .fast(0.4)       // Beautifully unhurried, floating gracefully over the 1.74 speed drums
+      .lpf(550)        // Deeply organic, smooth, woody tone
+      .room(0.98)      // Placed in an enormous cavernous acoustic space
+      .gain(sine.slow(4).range(0.18, 0.38)),
+
+    // DE-INTENSIFIED LAYERED RUNNING DRUMS - Soft, texture-first fluid roll
+    s("bd ~ ~ ~ rim ~ ~ ~ ~ ~ bd ~ rim ~ ~ ~")
+      .fast(1.74)
+      .lpf(350)        // Mossy floor thuds and stick-clicks, no aggressive edges
+      .gain(0.28),     
+
+    s("~ ~ rim ~ ~ ~ rim ~ rim ~ ~ ~ ~ rim ~ rim")
+      .fast(1.74)
+      .lpf(500)
+      .gain(0.12),
+
+    // CYMBALS AS THE SHAKE - High-frequency kinetic shimmer, completely free
+    s("hh hh gm_cabasa hh hh ~ gm_cabasa hh hh gm_cabasa hh ~ hh gm_cabasa hh ~")
+      .fast(1.74)
+      .hpf(7500)
+      .room(0.6)
+      .gain(0.10),     
+
+    // Subdued birds floating way back in the foggy wet canopy
+    s("<shama ~ ~ leothrix ~ ~ shama ~ ~ leothrix ~ shama ~ leothrix ~>")
+      .begin(0.05).end(0.4)
+      .room(0.96)     
+      .lpf(1000)      
+      .pan(sine.slow(6).range(0.1, 0.9))
+      .gain(0.18)     
+  )],
+
+  // =========================================================================
+  // PART 4: THE GRADUAL DECELERATION (With Melodic Echoes - Bars 69-100)
+  // Coming down step-by-step. The exotic melody lingers as a ghostly echo.
+  // =========================================================================
+  
+  // Stage A (Bars 69-76): Stride stops. Cymbals settle. 
+  // NEW: The Indian melody echoes here, broken, distant, and dissolving into the cave reverb.
+  [8, stack(
+    note("<c1 ab0>").s("sine").lpf(75).gain(0.32), // Vibrating earth stays constant
+    note("<[c2,db2,g2] [ab1,c2,eb2]>").s("sine").lpf(280).room(0.85).gain(0.28),
+    
+    // Ghostly, fragmented echoes of the raga line drifting off in the distance
+    note("<~ ~ c3 ~ db3 ~ ~ ~ f3 ~ ~ ~ c3 ~ ~ ~>").s("sine").fast(0.4).lpf(450).room(0.99).gain(0.16),
+    
+    s("hh ~ ~ ~ gm_cabasa ~ ~ ~ hh ~ ~ ~ ~ ~ ~ ~").fast(1.4).hpf(6000).gain(0.05),
+    s("<shama ~ ~ ~ leothrix ~ ~ ~>").begin(0.08).end(0.35).room(0.95).lpf(1800).gain(0.3)
+  )],
+
+  // Stage B (Bars 77-84): The echoes completely dissolve. Only the heavy, 
+  // breathing ground vibration and the warm pad hold your cooling step.
+  [8, stack(
+    note("c1").s("sine").lpf(70).gain(0.25), 
+    note("[c2,eb2,g2]").s("sine").lpf(210).room(0.9).gain(sine.slow(4).range(0.18, 0.04)),
+    s("shama ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~").begin(0.1).end(0.35).room(0.96).lpf(1500).gain(0.32)
+  )],
+
+  // Stage C (Bars 85-100): Absolute harmonic silence. The forest is still.
+  // The Shama takes a long, slow, completely unhurried solo as the dawn run finishes.
+  [16, stack(
+    note("c1").s("sine").lpf(60).gain(sine.slow(8).range(0.10, 0.01)), 
+    
+    s("shama ~ ~ ~ ~ ~ ~ ~ ~ ~ shama ~ ~ ~ ~ ~")
+      .begin(0.1).end(0.35)
+      .room(0.99)
+      .pan(0.5)
+      .gain(sine.slow(8).range(0.42, 0.05))
+  )]
+)
