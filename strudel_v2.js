@@ -170,3 +170,51 @@ stack(
     .gain(sine.slow(18).range(0.1, 0.4))
     .slow(4)
 )
+
+Sundued atmospheer
+samples({
+  shama: 'https://raw.githubusercontent.com/nickdelzotto-netizen/music/main/shama_norm.wav',
+  leothrix: 'https://raw.githubusercontent.com/nickdelzotto-netizen/music/main/leothrix_norm.wav'
+});
+
+arrange(
+  // SECTION 5: THE CEREBRAL DAWN CHORUS
+  [24, stack(
+    // 1. THE LOCKED EARTH LAYERS (Untouched, deep foundation)
+    note("<c1 c1 ab0 bb0>").s("sine").lpf(80).gain(0.42),
+    note("<[c2,eb2] [c2,g2] [ab1,eb2] [bb1,f2]>").s("sine").lpf(180).room(0.5).gain(0.38),
+
+    // 2. THE SUBDUED PULSE (The heavy acoustic heartbeat)
+    note("<c1 ~ ~ ~ ~ ~ ~ c1 ~ c1 ~ ~ ~ ~ ~ ~>").s("sine").fast(1.4).lpf(90).gain(0.35),
+
+    // 3. CEREBRAL TIMBER (The woodblock breaks out into complex syncopation)
+    s("~ ~ gm_woodblock ~ ~ gm_woodblock ~ ~ ~ gm_woodblock ~ ~ gm_woodblock ~ ~ ~")
+      .fast(1.74)      // Lifted to true cerebral DnB speed
+      .lpf(450)        // Still deeply muffled and respectful of the dark
+      .room(0.6)
+      .gain(0.14),
+
+    // 4. THE BAMBOO FRICTION (Wind swelling through the stalks)
+    s("~ ~ gm_marimba ~ ~ ~ gm_marimba ~ ~ gm_marimba ~ ~ ~ ~ ~ ~")
+      .fast(0.8)
+      .lpf(900)
+      .room(0.9)
+      .gain(sine.slow(6).range(0.08, 0.18)),
+
+    // 5. VARIED CYMBAL TEXTURES (Shifting high-frequency grains)
+    // Mixing traditional hats with subtle rim clicks and shakers for an organic, unpredictable roll
+    s("<[hh ~ hh ~] [gm_cabasa*4] [hh ~ rim ~] [~ gm_cabasa ~ hh]>")
+      .fast(1.74)      // Rolling at a fast, intricate sub-tempo
+      .hpf(6000)       // Kept razor-thin and airy up in the sky
+      .room(0.7)
+      .gain(sine.slow(4).range(0.1, 0.15)),
+
+    // 6. THE ACTIVE DIALOGUE (More frequent, alternating bird calls)
+    // The birds speak more often now, creating an active, respectful call-and-response
+    s("<shama ~ ~ leothrix ~ ~ shama ~ ~ ~ leothrix ~ shama ~ ~ leothrix>")
+      .begin(0.08).end(0.38)
+      .room(0.95)
+      .pan(sine.slow(4).range(0.2, 0.8)) // Slowly migrating across the stereo field
+      .gain(0.44)
+  )]
+)
