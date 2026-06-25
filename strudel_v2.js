@@ -483,3 +483,166 @@ arrange(
       .gain(sine.slow(8).range(0.42, 0.05))
   )]
 )
+
+WORK IN PRGRESS
+samples({
+  shama: 'https://raw.githubusercontent.com/nickdelzotto-netizen/music/main/shama_norm.wav',
+  leothrix: 'https://raw.githubusercontent.com/nickdelzotto-netizen/music/main/leothrix_norm.wav'
+});
+
+arrange(
+  // =========================================================================
+  // PART 1: THE LONELY EARTH & ISOLATED CALLS (Bars 1-16)
+  // Minimalist, cold morning air. Grounding sub-bass and isolated bird calls.
+  // =========================================================================
+  [16, stack(
+    note("c1").s("sine").lpf(80).gain(0.35),
+    note("<[c2,eb2] [c2,g2]>").s("sine").lpf(170).room(0.6).gain(0.28),
+    note("c1 ~ ~ ~ ~ ~ ~ ~").s("sine").fast(1.4).lpf(90).gain(0.25),
+    s("~ ~ ~ ~ rim ~ ~ ~").fast(1.4).lpf(250).gain(0.08),
+
+    s("shama ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~")
+      .begin(0.1).end(0.3)
+      .room(0.99)      
+      .delay(0.6)     
+      .lpf(1400)      
+      .pan(0.2)       
+      .gain(0.35)
+  )],
+
+  // =========================================================================
+  // PART 2: THE COLD RUSTLE & THE LOW MASK EFFECT (Bars 17-36)
+  // The grounding drone swells. The final bars (33-36) introduce the tight
+  // filter mask, submerging the highs to build breathless tension before the break.
+  // =========================================================================
+  [20, stack(
+    note("<c1 c1 ab0 bb0>").s("sine").lpf(sine.slow(10).range(80, 50)).gain(0.38),
+    note("<[c2,eb2] [c2,g2] [ab1,eb2] [bb1,f2]>").s("sine").lpf(sine.slow(10).range(170, 90)).room(0.6).gain(0.32),
+    s("~ ~ gm_marimba ~ ~ ~ gm_marimba ~ ~ gm_marimba ~ ~ ~ ~ ~ ~").fast(0.8).lpf(500).room(0.9).gain(0.12),
+    
+    s("hh ~ gm_cabasa ~ hh ~ gm_cabasa ~ hh ~ ~ gm_cabasa ~ ~ hh ~")
+      .fast(1.5)
+      .hpf(6500)
+      .lpf(sine.slow(10).range(20000, 200)) // Filter mask seals tight
+      .room(0.6)
+      .gain(0.08),
+
+    note("c2*4").s("sine").lpf(200).room(0.85).gain(0.15),
+
+    s("<shama ~ ~ leothrix ~ ~ shama ~ ~ ~ leothrix ~ ~ ~ ~ ~>")
+      .begin(0.08).end(0.38)
+      .room(0.93)     
+      .lpf(sine.slow(10).range(2200, 300))
+      .pan(0.3) 
+      .gain(0.35)
+  )],
+
+  // =========================================================================
+  // PART 3: THE HIGH DAWN RUN (Bars 37-68)
+  // Mask snaps open. The vibrating earth hits its stride alongside the 
+  // wood-transient, breathing Bansuri line.
+  // =========================================================================
+  [32, stack(
+    note("<c1*2 c1*2 ab0*2 bb0*2>").s("sine").lpf(75).gain(0.42), // Vibrating earth
+
+    note("<[c2,db2,g2,c3] ~ [ab1,c2,eb2,ab2] ~ [bb1,d2,f2,bb2] ~>").s("sine").lpf(380).room(0.8)
+      .gain(sine.slow(6).range(0.25, 0.45)),
+
+    // ATMOSPHERIC BANSURI PHRASING (Stretched into deep space)
+    note("<[c3 ~ ~ db3 ~ ~ eb3 ~] [f3 ~ g3 ~ ab3 ~ ~ ~] [f3 ~ ~ ~ db3 ~ c3 ~]>")
+      .s("gm_marimba")     
+      .fast(0.22)          // Slowed down further to float across bars
+      .lpf(400)            // Deeply smoothed woodwind tone
+      .room(0.99)          
+      .delay(0.8)          // Long trailing echoes
+      .gain(sine.slow(4).range(0.16, 0.30)),
+
+    // DRUM & BASS GRID (Subdued & mossy floor texture)
+    s("bd ~ ~ ~ rim ~ ~ ~ ~ ~ bd ~ rim ~ ~ ~").fast(1.74).lpf(350).gain(0.26),     
+    s("~ ~ rim ~ ~ ~ rim ~ rim ~ ~ ~ ~ rim ~ rim").fast(1.74).lpf(500).gain(0.12),
+
+    // CYMBALS AS THE SHAKE - Breezy high-frequency kinetic shimmer
+    s("hh hh gm_cabasa hh hh ~ gm_cabasa hh hh gm_cabasa hh ~ hh gm_cabasa hh ~").fast(1.74).hpf(7500).room(0.6).gain(0.10),     
+
+    s("shama ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~").begin(0.05).end(0.4).room(0.96).lpf(1000).gain(0.18)     
+  )],
+
+  // =========================================================================
+  // PART 4: THE EXTENDED BROKEN CANOPY (Atmospheric Makeover - Bars 69-108)
+  // Complete architectural overhaul. No "drum circle" elements. 
+  // The rhythm is a dark, cinematic skeleton. Melodies become crystalline wind.
+  // =========================================================================
+  [40, stack(
+    // THE UNBROKEN EARTH - Grounding sub-bass foundation
+    note("<c1*2 c1*2 ab0*2 bb0*2 f0*2 g0*2 c1*2 c1*2>").s("sine").lpf(65).gain(0.45),
+
+    // THE HIMALAYAN ICE WIND (Leothrix Morph)
+    // Removed rapid bursts. Now spaced far apart with slow, glass-like pitch gliding.
+    s("leothrix ~ ~ ~ ~ ~ ~ leothrix ~ ~ ~ ~ ~ ~ ~ ~")
+      .speed(sine.slow(8).range(1.1, 1.6)) // Floating, non-frantic microtonal glide
+      .begin(0.05).end(0.35)
+      .room(0.99)               // Massively immersive mountain canyon reflection
+      .delay(0.7)               
+      .lpf(2200)                // Softened the harsh edges of the call
+      .pan(sine.slow(4).range(0.1, 0.9))
+      .gain(sine.slow(6).range(0.20, 0.35)),
+
+    // CINEMATIC ELECTRONIC SKELETON (Deep Pushed-Back Pocket)
+    // No wooden rims, no rolling percussion. Just pure sub-heavy impact and empty space.
+    s("~ ~ ~ bd ~ ~ ~ ~ ~ bd ~ ~ ~ ~ bd ~") 
+      .fast(1.74)
+      .lpf(280)                 // Submerged pillowy depth
+      .gain(0.28),
+
+    // WHITE-NOISE SIGH (Replacing the acoustic shaker loop)
+    // A single, wide-panned mechanical breath that opens and shuts like fog moving.
+    s("~ ~ ~ ~ ~ ~ ~ ~ hh ~ ~ ~ ~ ~ ~ ~")
+      .fast(1.74)
+      .hpf(9000)
+      .room(0.9)                // Disappears into the background atmosphere
+      .pan(0.8)
+      .gain(sine.slow(5).range(0.02, 0.06)),
+
+    // EXTENDED ASYMMETRIC BANSURI ECHOES
+    // The Indian motif becomes a ghostly background drift, skipping entire segments
+    note("<~ ~ c3 ~ ~ ~ db3 ~ ~ ~ ~ ~ ~ ~ ~ ~>")
+      .s("gm_marimba")
+      .fast(0.15)
+      .lpf(350)
+      .room(0.99)
+      .gain(0.12)
+  )],
+
+  // =========================================================================
+  // PART 5: THE GRADUAL DECELERATION (With Mountain Echoes - Bars 109-140)
+  // Meditative cooling down. The complex rhythms collapse back into the soil.
+  // =========================================================================
+  
+  // Stage A (Bars 109-116): Syncopated stride ceases. Rhythms settle into a quiet walk.
+  [8, stack(
+    note("<c1 ab0>").s("sine").lpf(75).gain(0.32),
+    note("<[c2,db2,g2] [ab1,c2,eb2]>").s("sine").lpf(280).room(0.85).gain(0.28),
+    
+    s("leothrix ~ ~ ~ ~ ~ ~ ~").speed(1.2).begin(0.05).end(0.25).room(0.99).lpf(1500).gain(0.15),
+    s("hh ~ ~ ~ gm_cabasa ~ ~ ~ hh ~ ~ ~ ~ ~ ~ ~").fast(1.4).hpf(6000).gain(0.04),
+    s("shama ~ ~ ~ ~ ~ ~ ~").begin(0.08).end(0.35).room(0.95).lpf(1800).gain(0.25)
+  )],
+
+  // Stage B (Bars 117-124): Harmonic elements dissolve into the wet valley mist.
+  [8, stack(
+    note("c1").s("sine").lpf(70).gain(0.25), 
+    note("[c2,eb2,g2]").s("sine").lpf(210).room(0.9).gain(sine.slow(4).range(0.18, 0.04)),
+    s("shama ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~").begin(0.1).end(0.35).room(0.96).lpf(1500).gain(0.32)
+  )],
+
+  // Stage C (Bars 125-140): Absolute stillness. The Shama finishes the dawn solo alone.
+  [16, stack(
+    note("c1").s("sine").lpf(60).gain(sine.slow(8).range(0.10, 0.01)), 
+    
+    s("shama ~ ~ ~ ~ ~ ~ ~ ~ ~ shama ~ ~ ~ ~ ~")
+      .begin(0.1).end(0.35)
+      .room(0.99)
+      .pan(0.5)
+      .gain(sine.slow(8).range(0.42, 0.05))
+  )]
+)
