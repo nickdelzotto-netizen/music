@@ -1,0 +1,46 @@
+samples({
+  shama: 'https://raw.githubusercontent.com/nickdelzotto-netizen/music/main/shama_norm.wav',
+  leothrix: 'https://raw.githubusercontent.com/nickdelzotto-netizen/music/main/leothrix_norm.wav'
+});
+
+// =========================================================================
+// THE CONTROL PANEL
+// =========================================================================
+let bassWarmth = slider(260, 60, 300, 10); 
+let melodyLPF  = slider(10000, 500, 10000, 100); // Controls melody brightness
+let mainLPF    = slider(75500200, 10000, 50);
+
+arrange(
+  [32, stack(
+    // 1. THE SOARING MELODY (Switched to 'sine' with spatial echo)
+    note("< [g4 ~ eb4 ~ c4 ~ ~ ~] [g4 ~ f4 ~ ab4 ~ ~ ~] [g4 ~ eb4 ~ c4 ~ ~ ~] [f4 ~ d4 ~ bb4 ~ ~ ~] >")
+      .s("sine")
+      .fast(1.74)
+      .lpf(melodyLPF)
+      .delay(0.5)       // Adds a spatial echo effect
+      .delaytime(0.33)  // Times the echoes to bounce perfectly between the beats
+      .delayfeedback(0.4) // Controls how long the echoes fade out
+      .gain(0.25),
+
+    // 2. THE SMOOTH MID-BASS WARMTH
+    note("<[c2,eb2,g2] [c2,f2,ab2] [ab1,c2,eb2] [bb1,d2,f2]>")
+      .s("sine")
+      .fast(1.74)
+      .lpf(bassWarmth) 
+      .gain(0.32),
+
+    // 3. THE DEEP PHYSICAL SUB
+    note("<c1*2 c1*2 ab0*2 bb0*2>")
+      .s("sine")
+      .fast(1.74)
+      .lpf(65) 
+      .gain(0.45), 
+
+    // 4. THE DRUMS
+    s("bd ~ ~ ~ sd ~ ~ ~ ~ ~ bd ~ sd ~ ~ ~")
+      .fast(1.74)
+      .lpf(mainLPF)
+      .hpf(140)
+      .gain(0.35)
+  )]
+);
